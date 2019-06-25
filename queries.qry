@@ -1,0 +1,49 @@
+query SelectUserGroup {
+  description: "그룹 이름으로 사용자 검색"
+  statement: 
+    SELECT org.lego.network.Group
+    WHERE (groupName CONTAINS _$groupName)
+}
+
+query SelectUserEmail{
+  description: "사용자 이메일 검색"
+  statement:
+    SELECT org.lego.network.Group
+    WHERE (userEmail == _$userEmail)
+}
+
+query SelectUserGroupName{
+  description: "특정 사용자가 포함되어있는 그룹 명 검색"
+  statement:
+    SELECT org.lego.network.Group
+    WHERE ((groupName CONTAINS _$groupName) AND (userEmail == _$userEmail))
+}
+
+query SelectGroupPay{
+  description: "등록된 그룹이 있는지 검색"
+  statement:
+    SELECT org.lego.network.GroupPay
+    WHERE (groupName == _$groupName)
+}
+
+query SelectFalseUser{
+  description: "그룹별 인증이 필요한 회원 출력"
+  statement:
+    SELECT org.lego.network.Group
+    WHERE ((groupName CONTAINS _$groupName) 
+      AND (groupState CONTAINS _$groupState))
+}
+
+query SelectTransactionUser{
+  description: "사용자의 트랜잭션 정보"
+  statement:
+    SELECT org.lego.network.SendMoney
+    WHERE ((normal == _$noraml) AND (transactionId == _$transactionId))
+}
+
+query SelectUserTransactionId{
+  description: "사용자의 트랜잭션 정보"
+  statement:
+    SELECT org.lego.network.SendMoney
+    WHERE (normal == _$normal)
+}
