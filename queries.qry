@@ -40,7 +40,6 @@ query SelectTransactionUser{
     SELECT org.lego.network.SendMoney
     WHERE ((normal == _$noraml) AND (transactionId == _$transactionId))
 }
-
 query SelectUserTransactionId{
   description: "사용자의 트랜잭션 정보"
   statement:
